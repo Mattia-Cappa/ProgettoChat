@@ -23,7 +23,8 @@ public class Protocol implements Runnable {
 
             while (true){
                 msgReceived = fromClient.nextLine();
-                toClient.print("#CLI" + idClient + ": " + msgReceived + "\n");
+                System.out.println(msgReceived);
+                toClient.println("#CLI" + idClient + ": " + msgReceived );
             }
 
         } catch (Exception e) {
