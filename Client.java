@@ -11,13 +11,13 @@ public class Client {
 
         try{
             Socket client = new Socket(InetAddress.getLocalHost(),2000);
-            Scanner fromServer = new Scanner(client.getInputStream());
-            Scanner tastiera = new Scanner(System.in);
-            PrintWriter toServer = new PrintWriter(client.getOutputStream(), true);
+            ProtocolPrintWriter pp = new ProtocolPrintWriter(client);
+            ProtocolScanner ps = new ProtocolScanner(client);
+            Thread tp = new Thread(pp);
+            Thread ts = new Thread(ps);
+            tp.start();
+            ts.start();
 
-            while (true){
-
-            }
 
 
         } catch (UnknownHostException e) {
