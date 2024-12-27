@@ -19,6 +19,7 @@ public class ProtocolScanner implements Runnable{
                 String message = in.nextLine();
                 gui.addMessage(message);
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
