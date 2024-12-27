@@ -16,6 +16,7 @@ public class ProtocolScanner implements Runnable{
                 Scanner in = new Scanner(socket.getInputStream());
                 System.out.println(in.nextLine());
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,12 @@
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Protocol implements Runnable {
@@ -8,16 +14,18 @@ public class Protocol implements Runnable {
     private static ArrayList<Protocol> protocolList = new ArrayList<Protocol>();
 
     private final Socket myClient;
-    private int idClient;
+    private static ArrayList<Integer> idList = new ArrayList<Integer>();
+    private static int numClient=0;
+    private int idClient=0;
     Scanner fromClient;
     PrintWriter toClient;
 
 
-    Protocol(Socket myClient, int idClient) {
+    Protocol(Socket myClient) {
         this.myClient = myClient;
-        this.idClient = idClient;
         protocolList.add(this);
-
+        numClient++;
+        idClient=numClient;
     }
 
     @Override
@@ -34,8 +42,13 @@ public class Protocol implements Runnable {
                 //System.out.println(msgReceived);
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
+
+        } catch (NoSuchElementException e) {
+            sendAll("disconnected.");
+            idClient++;
+            protocolList.remove(this);
         }
 
     }
@@ -45,8 +58,10 @@ public class Protocol implements Runnable {
     }
 
     private void sendAll(String msg){
+        Date d = new Date();
+
         for (Protocol protocol : protocolList) {
-            protocol.sendMessage("#CLI" + this.idClient + ": " + msg);
+            protocol.sendMessage("#CLI" + idClient + ": " + msg+" ("+d.toString()+")");
         }
     }
 
