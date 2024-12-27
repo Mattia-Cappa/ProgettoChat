@@ -5,16 +5,19 @@ import java.util.Scanner;
 
 public class ProtocolScanner implements Runnable{
     private Socket socket;
+    private ClientGUI gui;
 
-    public ProtocolScanner(Socket s){
+    public ProtocolScanner(Socket s, ClientGUI gui){
         this.socket = s;
+        this.gui = gui;
     }
 
     public void run(){
         try {
             while(true) {
                 Scanner in = new Scanner(socket.getInputStream());
-                System.out.println(in.nextLine());
+                String message = in.nextLine();
+                gui.addMessage(message);
             }
         } catch (IOException e) {
             e.printStackTrace();

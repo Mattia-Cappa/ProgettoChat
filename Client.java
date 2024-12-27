@@ -12,14 +12,20 @@ public class Client {
         try{
             Socket client = new Socket(InetAddress.getLocalHost(),8080);
 
+            PrintWriter out = new PrintWriter(client.getOutputStream(),true);
+
+            ClientGUI gui = new ClientGUI(out);
+
+
+
             ProtocolPrintWriter pp = new ProtocolPrintWriter(client);
-            ProtocolScanner ps = new ProtocolScanner(client);
+            ProtocolScanner ps = new ProtocolScanner(client, gui);
 
             Thread tp = new Thread(pp);
             Thread ts = new Thread(ps);
 
             ts.start();
-            tp.start();
+            //tp.start();
 
 //            DA PROVARE QUANDO GESTIAMO PIù CLIENT CON ARRAYLIST
 //            try {
