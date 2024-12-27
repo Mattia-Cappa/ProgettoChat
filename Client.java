@@ -12,7 +12,6 @@ public class Client {
         try{
             Socket client = new Socket(InetAddress.getLocalHost(),8080);
 
-
             ProtocolPrintWriter pp = new ProtocolPrintWriter(client);
             ProtocolScanner ps = new ProtocolScanner(client);
 

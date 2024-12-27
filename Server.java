@@ -9,6 +9,7 @@ public class Server {
             System.out.println("Server started and listening on port 8080...");
             int idClient=0;
 
+
             while(true){
                 idClient++;
                 Socket clientSockets = mySocket.accept();

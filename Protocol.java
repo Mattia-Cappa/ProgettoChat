@@ -1,38 +1,53 @@
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Protocol implements Runnable {
 
+    private static ArrayList<Protocol> protocolList = new ArrayList<Protocol>();
+
     private final Socket myClient;
-    int idClient;
+    private int idClient;
+    Scanner fromClient;
+    PrintWriter toClient;
+
 
     Protocol(Socket myClient, int idClient) {
         this.myClient = myClient;
         this.idClient = idClient;
+        protocolList.add(this);
+
     }
 
     @Override
     public void run() {
 
         try {
-            Scanner fromClient = new Scanner(myClient.getInputStream());
-            PrintWriter toClient = new PrintWriter(myClient.getOutputStream(), true);
+            fromClient = new Scanner(myClient.getInputStream());
+            toClient = new PrintWriter(myClient.getOutputStream(), true);
             String msgReceived;
-
 
             while (true){
                 msgReceived = fromClient.nextLine();
-                System.out.println(msgReceived);
-                toClient.println("#CLI" + idClient + ": " + msgReceived );
+                sendAll(msgReceived);
+                //System.out.println(msgReceived);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
 
+    private void sendMessage(String msg){
+        toClient.println(msg);
+    }
 
+    private void sendAll(String msg){
+        for (Protocol protocol : protocolList) {
+            protocol.sendMessage("#CLI" + this.idClient + ": " + msg);
+        }
     }
 
 
