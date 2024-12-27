@@ -35,7 +35,7 @@ public class Protocol implements Runnable {
             fromClient = new Scanner(myClient.getInputStream());
             toClient = new PrintWriter(myClient.getOutputStream(), true);
             String msgReceived;
-
+            sendAll("connected.");
             while (true){
                 msgReceived = fromClient.nextLine();
                 sendAll(msgReceived);
