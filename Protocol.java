@@ -32,6 +32,10 @@ public class Protocol implements Runnable {
         try {
             fromClient = new Scanner(myClient.getInputStream());
             toClient = new PrintWriter(myClient.getOutputStream(), true);
+
+            // Invia l'ID del client al momento della connessione
+            toClient.println(idClient);
+
             String msgReceived;
             sendMessage(d.toString());
             sendAll("connected.");
