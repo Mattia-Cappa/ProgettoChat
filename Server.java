@@ -17,8 +17,6 @@ public class Server {
                 t.start();
             }
 
-
-
         }catch (Exception e) {
             e.printStackTrace();
         }
