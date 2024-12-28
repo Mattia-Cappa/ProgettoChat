@@ -17,7 +17,7 @@ public class Protocol implements Runnable {
     private int idClient=0;
     Scanner fromClient;
     PrintWriter toClient;
-
+    Date d = new Date();
 
     Protocol(Socket myClient) {
         this.myClient = myClient;
@@ -33,6 +33,7 @@ public class Protocol implements Runnable {
             fromClient = new Scanner(myClient.getInputStream());
             toClient = new PrintWriter(myClient.getOutputStream(), true);
             String msgReceived;
+            sendMessage(d.toString());
             sendAll("connected.");
             while (true){
                 msgReceived = fromClient.nextLine();
@@ -51,13 +52,20 @@ public class Protocol implements Runnable {
     }
 
     private void sendMessage(String msg){
-        toClient.println(msg);
+        if (msg.equals(d.toString())){
+            int lineWidth = 98; // Larghezza totale della riga
+            int padding = (lineWidth - msg.length()) / 2;
+
+            String paddedMessage = " ".repeat(Math.max(0, padding)) + msg; // Creo messaggio con spaziature a sinistra
+
+            toClient.println(paddedMessage); // Invia il messaggio centrato
+        } else {
+            toClient.println(msg);
+        }
     }
 
     private void sendAll(String msg){
-        Date d = new Date();
         SimpleDateFormat f = new SimpleDateFormat("HH:mm:ss");
-
         for (Protocol protocol : protocolList) {
             protocol.sendMessage("#CLI" + idClient + " ("+ f.format(d) +")" + " : " + msg);
         }

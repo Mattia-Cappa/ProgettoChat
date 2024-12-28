@@ -82,7 +82,5 @@ public class ClientGUI extends JFrame
     public void addMessage(String message){
         textArea.append(message + "\n");
     }
-
-
 }
 
