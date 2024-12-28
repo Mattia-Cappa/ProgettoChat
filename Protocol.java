@@ -1,9 +1,7 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.NoSuchElementException;
@@ -39,7 +37,6 @@ public class Protocol implements Runnable {
             while (true){
                 msgReceived = fromClient.nextLine();
                 sendAll(msgReceived);
-                //System.out.println(msgReceived);
             }
 
         } catch (IOException e) {
@@ -59,9 +56,10 @@ public class Protocol implements Runnable {
 
     private void sendAll(String msg){
         Date d = new Date();
+        SimpleDateFormat f = new SimpleDateFormat("HH:mm:ss");
 
         for (Protocol protocol : protocolList) {
-            protocol.sendMessage("#CLI" + idClient + ": " + msg+" ("+d.toString()+")");
+            protocol.sendMessage("#CLI" + idClient + " ("+ f.format(d) +")" + " : " + msg);
         }
     }
 

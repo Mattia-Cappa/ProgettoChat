@@ -17,7 +17,6 @@ public class Client {
             ClientGUI gui = new ClientGUI(out);
 
 
-
             ProtocolPrintWriter pp = new ProtocolPrintWriter(client);
             ProtocolScanner ps = new ProtocolScanner(client, gui);
 
@@ -25,21 +24,6 @@ public class Client {
             Thread ts = new Thread(ps);
 
             ts.start();
-            //tp.start();
-
-//            DA PROVARE QUANDO GESTIAMO PIù CLIENT CON ARRAYLIST
-//            try {
-//                Scanner tastiera = new Scanner(System.in);
-//                while(true) {
-//                    PrintWriter out = new PrintWriter(client.getOutputStream(), true);
-//                    out.println(tastiera.nextLine());
-//                    Scanner in = new Scanner(client.getInputStream());
-//                    System.out.println(in.nextLine());
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
