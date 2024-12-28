@@ -12,9 +12,14 @@ public class Client {
         try{
             Socket client = new Socket(InetAddress.getLocalHost(),8080);
 
+
             PrintWriter out = new PrintWriter(client.getOutputStream(),true);
 
-            ClientGUI gui = new ClientGUI(out);
+            // Prova per prendere id del client dal server
+            Scanner in = new Scanner(client.getInputStream());
+            int idClient = Integer.parseInt(in.nextLine());
+
+            ClientGUI gui = new ClientGUI(out, idClient);
 
 
 

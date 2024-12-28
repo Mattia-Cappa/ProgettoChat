@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -16,12 +15,12 @@ public class ClientGUI extends JFrame
     private PrintWriter out; // Per invio di messaggi
 
     //2.costruttore --> è un metodo con lo stesso nome della classe , non restituisce nulla ne anche void
-    public ClientGUI(PrintWriter out)
+    public ClientGUI(PrintWriter out, int idClient)
     {
         this.out = out;
 
         // Configurazione della finestra
-        setTitle("dAA INSERIRE ID CLIENT"); // metodo di JFrame, siccome lo estenod lo posso usare pure dentro la finestra
+        setTitle("Cli: " + idClient); // metodo di JFrame, siccome lo estenod lo posso usare pure dentro la finestra
         setSize(400,300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false); //disattiva tastino ingrandimento riuduzione, non puoi modificare le dimensioni della finestra
@@ -85,4 +84,3 @@ public class ClientGUI extends JFrame
 
 
 }
-
