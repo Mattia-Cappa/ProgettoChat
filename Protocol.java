@@ -30,7 +30,7 @@ public class Protocol implements Runnable {
 
         try {
             fromClient = new Scanner(myClient.getInputStream());
-            toClient = new PrintWriter(myClient.getOutputStream(),true);
+            toClient = new PrintWriter(myClient.getOutputStream(), true);
 
             String msgReceived;
 
