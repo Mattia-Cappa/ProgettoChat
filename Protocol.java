@@ -27,7 +27,6 @@ public class Protocol implements Runnable {
 
     @Override
     public void run() {
-
         try {
             fromClient = new Scanner(myClient.getInputStream());
             toClient = new PrintWriter(myClient.getOutputStream(), true);
@@ -59,7 +58,7 @@ public class Protocol implements Runnable {
                         int targetId = Integer.parseInt(commandParts[1]);
                         privateMessage(targetId, commandParts[2]);
                     } else {
-                        sendMessageServer("Devi specificare l'ID del client e il messaggio.");
+                        sendMessageServer("You have to specify the ID and the message.");
                     }
                 }
                 else if (msgReceived.equals("-LIST")){

@@ -25,11 +25,10 @@ public class ProtocolScanner implements Runnable{
             String paddedMessage = " ".repeat(Math.max(0, padding)) + msg; // Creo messaggio con spaziature a sinistra
             gui.addMessage(paddedMessage);
 
+            Scanner in = new Scanner(socket.getInputStream());
             while(true) {
-                Scanner in = new Scanner(socket.getInputStream());
                 String message = in.nextLine();
                 gui.addMessage(message);
-                in = null;
             }
 
         } catch (IOException e) {
