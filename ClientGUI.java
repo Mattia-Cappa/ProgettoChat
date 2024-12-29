@@ -20,7 +20,7 @@ public class ClientGUI extends JFrame
         this.out = out;
 
         // Configurazione della finestra
-        setTitle("Cli: " + idClient); // metodo di JFrame, siccome lo estenod lo posso usare pure dentro la finestra
+        setTitle("Client " + idClient); // metodo di JFrame, siccome lo estenod lo posso usare pure dentro la finestra
         setSize(400,300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false); //disattiva tastino ingrandimento riuduzione, non puoi modificare le dimensioni della finestra
