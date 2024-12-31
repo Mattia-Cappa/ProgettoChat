@@ -20,7 +20,7 @@ public class ProtocolScanner implements Runnable{
             Date d = new Date();
             SimpleDateFormat f = new SimpleDateFormat("dd MMMM yyyy");
             String msg = f.format(d);
-            int lineWidth = 110; // Larghezza totale della riga
+            int lineWidth = 50; // Larghezza totale della riga
             int padding = (lineWidth - msg.length()) / 2;
             String paddedMessage = " ".repeat(Math.max(0, padding)) + msg; // Creo messaggio con spaziature a sinistra
             gui.addMessage(paddedMessage);
