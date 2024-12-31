@@ -103,7 +103,13 @@ public class Protocol implements Runnable {
     private void sendAll(String msg){
         for (Protocol protocol : protocolList) {
             d = new Date();
-            protocol.sendMessage("#CLI" + idClient + " ("+ f.format(d) +")" + " : " + msg);
+            if(idClient== protocol.idClient){
+
+                protocol.sendMessage("#TU" + " ("+ f.format(d) +")" + " : " + msg);
+            }else{
+                protocol.sendMessage("#CLI" + idClient + " ("+ f.format(d) +")" + " : " + msg);
+
+            }
         }
     }
 
@@ -118,7 +124,7 @@ public class Protocol implements Runnable {
     }
 
     private void shutdownServer() {
-        sendAll("Closing..");
+        sendAll("Closing.");
         for (Protocol protocol : protocolList) {
             try {
                 protocol.myClient.close();
