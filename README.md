@@ -100,7 +100,6 @@ Chiude il server e blocca tutti i client.
 - Java Development Kit (JDK) 8 o superiore.
 
 ### Istruzioni
-Cliccando i due triangolini verdi, seguendo l'ordine dei passaggi, verrà avviata l'applicazione.
 1. Compilare i file Java:
    ```bash
    javac Server.java Client.java Protocol.java ClientGUI.java ProtocolPrintWriter.java ProtocolScanner.java
