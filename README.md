@@ -12,7 +12,6 @@ Questo progetto implementa un sistema di chat server-client in Java utilizzando 
    - [Protocol](#protocol)
    - [ClientGUI](#clientgui)
 4. [Comandi Supportati](#comandi-supportati)
-5. [Architettura del Codice](#architettura-del-codice)
 6. [Come Eseguire il Progetto](#come-eseguire-il-progetto)
 7. [Esecuzione dei File Jar](#esecuzione-dei-file-jar)
 
